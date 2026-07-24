@@ -1,0 +1,461 @@
+/* Pepe · 2017–2025 — anıt sitesi */
+
+:root {
+  --black: #161616;
+  --ink: #1c1a18;
+  --paper: #f5f1ea;
+  --paper-dim: #8a837a;
+  --white: #ffffff;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Montserrat", -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--paper);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- ANIT (hero) ---------- */
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vh, 48px) 16px 64px;
+  position: relative;
+}
+
+.date {
+  position: absolute;
+  top: clamp(20px, 3.5vh, 34px);
+  font-size: clamp(12px, 2.8vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #d9d3c9;
+}
+.date span {
+  display: block;
+  font-size: clamp(9px, 2vw, 10.5px);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  margin-bottom: 7px;
+}
+.date-left  { left:  clamp(18px, 5vw, 52px); }
+.date-right { right: clamp(18px, 5vw, 52px); text-align: right; }
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: rise 1.5s ease both;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.name {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(64px, 17vw, 124px);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+
+.epitaph {
+  margin-top: 20px;
+  max-width: 54ch;
+  font-size: clamp(12.5px, 2vw, 15px);
+  font-weight: 400;
+  line-height: 1.95;
+  color: #cfc8bd;
+  text-wrap: pretty;
+}
+
+/* pati izi kolajı */
+.paw {
+  position: relative;
+  width: min(88vw, 430px, 56vh);
+  aspect-ratio: 0.87;
+  margin-top: clamp(26px, 4.5vh, 46px);
+}
+.paw::before {
+  content: "";
+  position: absolute;
+  inset: -4%;
+  background: rgba(255, 255, 255, 0.045);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.toe, .pad {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.toe { width: 22%; aspect-ratio: 0.8; border-radius: 50%; }
+.toe img, .pad img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.toe-1 { left: 0;      top: 24%; transform: rotate(-20deg); }
+.toe-2 { left: 25.5%;  top: 3%;  transform: rotate(-7deg); }
+.toe-3 { right: 25.5%; top: 3%;  transform: rotate(7deg); }
+.toe-4 { right: 0;     top: 24%; transform: rotate(20deg); }
+.toe-1 img { object-position: 62% 42%; transform: scale(1.35); transform-origin: 62% 42%; }
+.toe-2 img { object-position: 50% 22%; transform: scale(1.75); transform-origin: 50% 20%; }
+.toe-3 img { object-position: 52% 14%; transform: scale(1.35); transform-origin: 55% 16%; }
+.toe-4 img { object-position: 44% 28%; transform: scale(1.45); transform-origin: 42% 28%; }
+
+.pad {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64%;
+  height: 52%;
+  border-radius: 50% 50% 44% 44% / 58% 58% 42% 42%;
+}
+.pad img { object-position: 50% 42%; transform: scale(1.06); }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 18px;
+  color: var(--paper-dim);
+  text-decoration: none;
+  font-size: 22px;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+
+/* ---------- MEKTUP ---------- */
+
+.letter {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(70px, 12vh, 130px) 24px;
+  text-align: center;
+}
+.letter p {
+  font-size: clamp(16px, 2.4vw, 19px);
+  line-height: 1.9;
+  font-weight: 400;
+  color: #d9d3c9;
+}
+.letter p + p { margin-top: 28px; }
+.anniversary {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--white) !important;
+}
+
+/* ---------- BÖLÜM BAŞLIKLARI ---------- */
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(30px, 5.5vw, 44px);
+  text-align: center;
+  color: var(--white);
+  margin-bottom: clamp(40px, 7vh, 70px);
+}
+
+/* ---------- HİKÂYE ---------- */
+
+.story {
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(70px, 11vh, 120px) 20px clamp(50px, 8vh, 90px);
+}
+.story .section-title { color: var(--ink); }
+
+.year { max-width: 1060px; margin: 0 auto clamp(56px, 9vh, 100px); }
+
+.year header {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.year .y {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(34px, 6vw, 52px);
+  color: var(--ink);
+}
+.year .y-label {
+  font-size: clamp(13px, 2.2vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a09788;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+.row + .row { margin-top: 18px; }
+
+.row figure {
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+.row img {
+  display: block;
+  height: clamp(200px, 36vw, 290px);
+  max-width: 100%;
+  width: auto;
+  border-radius: 10px 10px 4px 4px;
+  cursor: zoom-in;
+  object-fit: cover;
+}
+.row figcaption {
+  margin-top: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7c7365;
+}
+
+/* ---------- KISA ANLAR ---------- */
+
+.clips {
+  background: var(--paper);
+  padding: 0 20px clamp(80px, 12vh, 130px);
+}
+.clips .section-title { color: var(--ink); }
+
+.clip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.clip { width: min(88vw, 280px); }
+.clip video {
+  width: 100%;
+  aspect-ratio: 9 / 15;
+  object-fit: cover;
+  clip-path: url(#arch-soft);
+  display: block;
+}
+.clip figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7c7365;
+}
+
+/* ---------- ANILAR DUVARI ---------- */
+
+.wall-section {
+  padding: clamp(80px, 12vh, 130px) 20px;
+  background: var(--black);
+}
+
+.wall {
+  columns: 4 210px;
+  column-gap: 14px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.wall img {
+  width: 100%;
+  display: block;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  cursor: zoom-in;
+  opacity: 0.92;
+  transition: opacity 0.3s;
+}
+.wall img:hover { opacity: 1; }
+
+/* ---------- KAPANIŞ ---------- */
+
+.close {
+  padding: clamp(70px, 12vh, 120px) 24px clamp(60px, 10vh, 100px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candle {
+  position: relative;
+  background: none;
+  border: none;
+  width: 90px;
+  height: 150px;
+  cursor: pointer;
+}
+.candle .wax {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 34px; height: 82px;
+  background: #efe9dd;
+  border-radius: 8px 8px 5px 5px;
+}
+.candle .wick {
+  position: absolute;
+  bottom: 80px; left: 50%;
+  transform: translateX(-50%);
+  width: 3px; height: 9px;
+  background: #4a443c;
+  border-radius: 2px;
+}
+.candle .flame {
+  position: absolute;
+  bottom: 87px; left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 22px; height: 34px;
+  background: #ffc45e;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  transform-origin: bottom center;
+  transition: transform 0.6s ease;
+  filter: blur(0.5px);
+}
+.candle .flame::after {
+  content: "";
+  position: absolute;
+  bottom: 3px; left: 50%;
+  transform: translateX(-50%);
+  width: 11px; height: 17px;
+  background: #fff3d6;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+}
+.candle.lit .flame {
+  transform: translateX(-50%) scale(1);
+  animation: flicker 1.8s ease-in-out infinite;
+}
+.candle.lit::before {
+  content: "";
+  position: absolute;
+  bottom: 68px; left: 50%;
+  transform: translateX(-50%);
+  width: 90px; height: 90px;
+  background: rgba(255, 196, 94, 0.16);
+  border-radius: 50%;
+  filter: blur(18px);
+  pointer-events: none;
+}
+@keyframes flicker {
+  0%, 100% { transform: translateX(-50%) scale(1) rotate(-1.5deg); }
+  25%      { transform: translateX(-50%) scale(0.96) rotate(1.5deg); }
+  50%      { transform: translateX(-50%) scale(1.04) rotate(-1deg); }
+  75%      { transform: translateX(-50%) scale(0.98) rotate(2deg); }
+}
+
+.candle-hint {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--paper-dim);
+}
+
+.close-line {
+  margin-top: clamp(44px, 7vh, 70px);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 3.6vw, 28px);
+  color: var(--white);
+}
+
+.close-name {
+  margin-top: 34px;
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(30px, 5vw, 40px);
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+.close-name span {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--paper-dim);
+}
+
+footer {
+  padding: 26px 20px 34px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #55504a;
+}
+
+/* ---------- LIGHTBOX ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(10, 10, 10, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.lightbox[hidden] { display: none; }
+.lightbox img {
+  max-width: min(94vw, 900px);
+  max-height: 82vh;
+  border-radius: 6px;
+}
+.lightbox p {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #cfc9bf;
+}
+.lb-close {
+  position: absolute;
+  top: 14px; right: 20px;
+  background: none;
+  border: none;
+  color: #cfc9bf;
+  font-size: 40px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---------- REVEAL ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-cue { animation: none; }
+  .candle.lit .flame { animation: none; }
+}
