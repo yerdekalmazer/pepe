@@ -234,6 +234,27 @@ body {
   color: #7c7365;
 }
 
+/* Mobilde her fotoğraf tek sütunda, tam genişlikte ve kendi oranında durur.
+   Sabit yükseklik + serbest genişlik telefonda 113px ile 350px arasında
+   savrulup dağınık görünüyordu; kırpmadan hizalamanın yolu tek sütun.
+   Masaüstünde satır düzeni (sabit yükseklik, doğal genişlik) korunur. */
+@media (max-width: 760px) {
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .row + .row { margin-top: 26px; }
+  .row figure { max-width: none; min-width: 0; }
+  .row img {
+    width: 100%;
+    height: auto; /* kırpma yok — fotoğrafın tamamı görünür */
+    object-fit: initial;
+    border-radius: 10px 10px 4px 4px;
+  }
+  .row figcaption { font-size: 12.5px; margin-top: 8px; }
+}
+
 /* ---------- KISA ANLAR ---------- */
 
 .clips {
@@ -266,6 +287,7 @@ body {
   color: #7c7365;
 }
 
+
 /* ---------- ANILAR DUVARI ---------- */
 
 .wall-section {
@@ -289,6 +311,12 @@ body {
   transition: opacity 0.3s;
 }
 .wall img:hover { opacity: 1; }
+
+/* Mobilde tek sütun duvar metrelerce uzuyordu; iki sütuna alındı */
+@media (max-width: 760px) {
+  .wall { columns: 2; column-gap: 10px; }
+  .wall img { margin-bottom: 10px; border-radius: 6px; }
+}
 
 /* ---------- KAPANIŞ ---------- */
 

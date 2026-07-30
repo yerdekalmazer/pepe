@@ -1,6 +1,8 @@
 // Pepe · 2017–2025
 
 // Kaydırma ile beliren bölümler
+// Eşik oransal değil: anılar duvarı gibi ekrandan uzun bloklarda yüzde eşiği
+// hiçbir zaman dolmuyor ve bölüm görünmez kalıyordu.
 const io = new IntersectionObserver(
   (entries) => {
     for (const e of entries) {
@@ -10,9 +12,28 @@ const io = new IntersectionObserver(
       }
     }
   },
-  { threshold: 0.12 }
+  { rootMargin: "0px 0px -8% 0px" }
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+// Klipler yalnızca ekrana girince yüklenip oynar.
+// Hepsi birden autoplay olduğunda sayfa daha açılırken megabaytlarca video
+// indiriliyor ve fotoğraflar sıraya takılıyordu.
+const clipObserver = new IntersectionObserver(
+  (entries) => {
+    for (const e of entries) {
+      const v = e.target;
+      if (e.isIntersecting) {
+        if (v.preload !== "auto") v.preload = "auto";
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    }
+  },
+  { rootMargin: "200px 0px" }
+);
+document.querySelectorAll(".clip video").forEach((v) => clipObserver.observe(v));
 
 // Yıl dönümü satırı — her 26 Temmuz'da görünür
 (() => {
